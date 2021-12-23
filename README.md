@@ -95,6 +95,28 @@ The visualized experimental results are supplemented as follows:
 
 ![](https://github.com/teki97/DM-TFD/blob/master/fig/supplement.png)
 
+### Discussion on the SNR level during training
+
+![](https://github.com/teki97/DM-TFD/blob/master/fig/snr.png)
+
+### Discussion on the selection of kernel size in the skipping Conv block
+We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of the convolutional kernel in the skipping Conv block. Empirically, the ideal range of the kernel size is from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
+
+![](https://github.com/teki97/DM-TFD/blob/master/fig/k1.png)
+
+### Discussion on the selection of kernel size in the BAM
+
+![](https://github.com/teki97/DM-TFD/blob/master/fig/k2.png)
+
+### Discussion on the selection of the number of reduction ratios in the BAM
+
+![](https://github.com/teki97/DM-TFD/blob/master/fig/r1.png)
+
+![](https://github.com/teki97/DM-TFD/blob/master/fig/r2.png)
+
+### Discussion on the length of the test signal
+
+
 
 ## Contributing Guideline
 We would like to thank the authors in these works [2-5] for sharing the source codes of these methods, which are publicly released at https://github.com/Prof-Boualem-Boashash/TFSAP-7.1-software-package, https://github.com/mokhtarmohammadi/Locally-Optimized-ADTFD and https://github.com/Jongchan/attention-module.
