@@ -97,12 +97,12 @@ The visualized experimental results are supplemented as follows:
 
 ### Discussion on the SNR level during training
 
-<img src="https://github.com/teki97/DM-TFD/blob/master/fig/snr.png" width = "500" height = "250" align=center />
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/snr.png" width = "500" height = "200" align=center />
 
 ### Discussion on the selection of kernel size in the skipping Conv block
 We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of the convolutional kernel in the skipping Conv block. Empirically, the ideal range of the kernel size is from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
 
-![](https://github.com/teki97/DM-TFD/blob/master/fig/k1.png)
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/k1.png" width = "500" height = "100" align=center />
 
 ### Discussion on the selection of kernel size in the BAM
 
