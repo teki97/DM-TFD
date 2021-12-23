@@ -106,16 +106,17 @@ We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of t
 
 ### Discussion on the selection of kernel size in the BAM
 
-![](https://github.com/teki97/DM-TFD/blob/master/fig/k2.png)
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/k2.png" width = "500" height = "175" align=center />
 
 ### Discussion on the selection of the number of reduction ratios in the BAM
 
-![](https://github.com/teki97/DM-TFD/blob/master/fig/r1.png)
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/r1.png" width = "500" height = "175" align=center />
 
-![](https://github.com/teki97/DM-TFD/blob/master/fig/r2.png)
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/r2.png" width = "500" height = "175" align=center />
 
 ### Discussion on the length of the test signal
 
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/length.png" width = "900" height = "175" align=center />
 
 
 ## Contributing Guideline
