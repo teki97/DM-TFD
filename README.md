@@ -96,7 +96,7 @@ The visualized experimental results are supplemented as follows:
 ![](https://github.com/teki97/DM-TFD/blob/master/fig/supplement.png)
 
 ### Discussion on the SNR level during training
-We choose to use the synthetic data with a fixed SNR = 10 dB to train our model. In fact, we have also trained our model with different SNR levels, e.g., SNR = 5dB, SNR = [5, 45] dB. The TFD results of the real-world signals are shown as follows:
+We choose to use the synthetic data with a fixed **SNR = 10 dB** to train our model. In fact, we have also trained our model with different SNR levels, e.g., SNR = 5dB, SNR = [5, 45] dB. The TFD results of the real-world signals are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/snr.png" width = "500" height = "300" align=center />
 
@@ -106,6 +106,8 @@ It is obvious that the model trained by data with SNR = 5 dB ignores the fourth 
 We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of the convolutional kernel in the skipping Conv block. Empirically, the ideal range of the kernel size is from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k1.png" width = "500" height = "175" align=center />
+
+The TFD result of K1 = 3 has some residual interfernces around interaction point, and it seems that it looks sharper than the results of larger kernel size, e.g., K1 = 7. Though there  
 
 ### Discussion on the selection of kernel size in the BAM
 
