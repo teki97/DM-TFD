@@ -123,10 +123,14 @@ We adopt **R1 = 4** and **R2 = 4** in the BAM where R1 denotes the reduction rat
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/r2.png" width = "500" height = "175" align=center />
 
+For the selection of R1, it can be seen that the TFD results with R1 = 2, 4 reduce the CTs heavily while the result with R1 = 1 remains a lot of CTs. Moreover, the result of R1 = 4 has better performance on the resolution. For the selection of R2, only R2 = 4 achieve cross-term free TFD. Thus we choose R1 = 4 and R2 = 4 in our model.
+
 ### Discussion on the length of the test signal
+Though we train our model only using 256-sample synthetic signals, we gain satisfactory performance on a 400-sample bat echolocation signal without re-train. Thus, we experiment on the different lengths of the test signals, and the results are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/length.png" width = "900" height = "175" align=center />
 
+It is notable that the interference terms and noise appear with the increasing length of signal, and when the length of the test signal is 2 times of the training signal, the great representation can be also gained. That is to say, only if the length of the test signal is longer than the training signal (**about 2 times**), we need to re-train the model to gain better performance.
 
 ## Contributing Guideline
 We would like to thank the authors in these works [2-5] for sharing the source codes of these methods, which are publicly released at https://github.com/Prof-Boualem-Boashash/TFSAP-7.1-software-package, https://github.com/mokhtarmohammadi/Locally-Optimized-ADTFD and https://github.com/Jongchan/attention-module.
