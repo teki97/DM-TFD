@@ -96,8 +96,11 @@ The visualized experimental results are supplemented as follows:
 ![](https://github.com/teki97/DM-TFD/blob/master/fig/supplement.png)
 
 ### Discussion on the SNR level during training
+We choose to use the synthetic data with a fixed SNR = 10 dB to train our model. In fact, we have also trained our model with different SNR levels, e.g., SNR = 5dB, SNR = [5, 45] dB. The TFD results of the real-world signals are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/snr.png" width = "500" height = "300" align=center />
+
+It is obvious that the model trained by data with SNR = 5 dB ignores the fourth component of the bat echolocation signal, of which energy is weak. The other two model succeed in obtaining the weak energy component. However, when we use the synthetic data with SNR level ranging from 5 to 45 dB, there are remaining CTs. Thus, we choose data with SNR = 10 dB to train our model. 
 
 ### Discussion on the selection of kernel size in the skipping Conv block
 We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of the convolutional kernel in the skipping Conv block. Empirically, the ideal range of the kernel size is from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
