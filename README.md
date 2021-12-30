@@ -118,8 +118,7 @@ Usually time-frequency representations are compared in terms of their ability to
 It can be seen that the proposed DM-TFD has better performance on the spectral-overlapped signal (the 1st figure), especially on the intersection of the signal. On the other hand, for the closely-located signal, there is almost no difference in the results of three methods.
 
 ### Discussion on the parameter settings
-We have some experiments on the parameter settings in the proposed model, e.g., the kernel size **K1** in the skipping Conv block, the kernel size **K2** in the BAM, the number of reduction ratio **R1** in the channel attention of the BAM, and the number of reduction ratio **R2** in the spatial attention of the BAM.
-
+We have some experiments on the parameter settings in the proposed model, e.g., the kernel size **K1** in the skipping Conv block, the kernel size **K2** in the BAM, the number of reduction ratio **R1** in the channel attention of the BAM, and the number of reduction ratio **R2** in the spatial attention of the BAM.  
 We adopt **K1 = 5** in the skipping Conv block. Empirically, the ideal range of the kernel size ranges from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k1.png" width = "500" height = "175" align=center />
