@@ -15,7 +15,7 @@ For the specific application, you'd better make the synthetic signals in the tra
 
 ## Supplementary Experiments
 
-## Discussion on the real-life signal
+### Discussion on the real-life signal
 In this paper, we discuss the robustness of our network on synthetic data. We also have some discussion on the real-life signal corresponding to various **N** (3, 5, 7, 9, 11, 13, 15). Seven pre-trained networks are provided.
 The evaluation results measured by Renyi Entropy for the real-life bat echolocation signal are shown in the following table: 
 <table>
@@ -115,21 +115,23 @@ Usually time-frequency representations are compared in terms of their ability to
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/if.png" width = "800" height = "450" align=center />
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_close.png" width = "800" height = "450" align=center />
 
-### Discussion on the selection of kernel size in the skipping Conv block
-We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of the convolutional kernel in the skipping Conv block. Empirically, the ideal range of the kernel size ranges from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
+It can be seen that the proposed DM-TFD has better performance on the spectral-overlapped signal (the 1st figure), especially on the intersection of the signal. On the other hand, for the closely-located signal, there is almost no difference in the results of three methods.
+
+### Discussion on the parameter settings
+We have some experiments on the parameter settings in the proposed model, e.g., the kernel size **K1** in the skipping Conv block, the kernel size **K2** in the BAM, the number of reduction ratio **R1** in the channel attention of the BAM, and the number of reduction ratio **R2** in the spatial attention of the BAM.
+
+We adopt **K1 = 5** in the skipping Conv block. Empirically, the ideal range of the kernel size ranges from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k1.png" width = "500" height = "175" align=center />
 
 On the one hand, there are residual interferences in the TFD results when K1 = 3 and K1 = 7, and the results of K1 = 5 achieve the cross-term free TFD. On the other hand, it seems that the large kernel size contributs to smooth result, e.g., though the result of K1 = 7 remain some CTs, the ATs and CTs look more smooth than K1 = 3.
 
-### Discussion on the selection of kernel size in the BAM
-We adopt **K2 = 3** in the BAM where K2 represents the size of the convolutional kernel in the BAM. Taking the computation complexity into consideration, the ideal range of the kernel size ranges from 1 to 5. There are the experimental results on the synthetic signal with K2 = 1, 3, 5 in the following:
+We adopt **K2 = 3** in the BAM. Taking the computation complexity into consideration, the ideal range of the kernel size ranges from 1 to 5. There are the experimental results on the synthetic signal with K2 = 1, 3, 5 in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k2.png" width = "500" height = "175" align=center />
 
 There is almost no difference among these results. Except for the TFD result with K2 = 1 has some residual interference term, and has lower resolution compared with other results. In order to reduce the number of paramters, we finally choose K2 = 3.
 
-### Discussion on the selection of the number of reduction ratios in the BAM
 We adopt **R1 = 4** and **R2 = 4** in the BAM where R1 denotes the reduction ratio in the channel attention and R2 denotes the reduction ratio in the spatial attention. The channel number of input is set to 8, thus the ideal range of R1/R2 ranges from 1 to 8. The TFD results of the real-life signal with R1 = 1, 2, 4 and R2 = 1, 2, 4 are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/r1.png" width = "500" height = "175" align=center />
