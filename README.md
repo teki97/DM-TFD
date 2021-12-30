@@ -124,12 +124,14 @@ We adopt **K1 = 5** in the skipping Conv block. Empirically, the ideal range of 
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k1.png" width = "500" height = "175" align=center />
 
-On the one hand, there are residual interferences in the TFD results when K1 = 3 and K1 = 7, and the results of K1 = 5 achieve the cross-term free TFD. On the other hand, it seems that the large kernel size contributs to smooth result, e.g., though the result of K1 = 7 remain some CTs, the ATs and CTs look more smooth than K1 = 3.  
+On the one hand, there are residual interferences in the TFD results when K1 = 3 and K1 = 7, and the results of K1 = 5 achieve the cross-term free TFD. On the other hand, it seems that the large kernel size contributs to smooth result, e.g., though the result of K1 = 7 remain some CTs, the ATs and CTs look more smooth than K1 = 3.
+
 We adopt **K2 = 3** in the BAM. Taking the computation complexity into consideration, the ideal range of the kernel size ranges from 1 to 5. There are the experimental results on the synthetic signal with K2 = 1, 3, 5 in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k2.png" width = "500" height = "175" align=center />
 
-There is almost no difference among these results. Except for the TFD result with K2 = 1 has some residual interference term, and has lower resolution compared with other results. In order to reduce the number of paramters, we finally choose K2 = 3.  
+There is almost no difference among these results. Except for the TFD result with K2 = 1 has some residual interference term, and has lower resolution compared with other results. In order to reduce the number of paramters, we finally choose K2 = 3.
+
 We adopt **R1 = 4** and **R2 = 4** in the BAM where R1 denotes the reduction ratio in the channel attention and R2 denotes the reduction ratio in the spatial attention. The channel number of input is set to 8, thus the ideal range of R1/R2 ranges from 1 to 8. The TFD results of the real-life signal with R1 = 1, 2, 4 and R2 = 1, 2, 4 are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/r1.png" width = "500" height = "175" align=center />
