@@ -112,8 +112,8 @@ It is notable that the interference terms and noise appear with the increasing l
 ### Comparison on the ability to estimate instantaneous frequency
 Usually time-frequency representations are compared in terms of their ability to accurately estimate instantaneous frequency, thus we have added such a comparison with ADTFD, RS and SST, and th results are shown in the following:
 
-<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if.png" width = "900" height = "600" align=center />
-<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_close.png" width = "900" height = "600" align=center />
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if.png" width = "800" height = "500" align=center />
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_close.png" width = "800" height = "500" align=center />
 
 ### Discussion on the selection of kernel size in the skipping Conv block
 We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of the convolutional kernel in the skipping Conv block. Empirically, the ideal range of the kernel size ranges from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
