@@ -13,10 +13,10 @@ All pre-trained networks related to this paper are provided in **master** branch
 Our training dataset includes 80000 two or three randomly spectrally-overlapped (only one intersection) linear frequencymodulated (LFM) and sinusoidal frequency-modulated (SFM) components with amplitude modulation (AM) at a fixed SNR = **10 dB**. In particular, two-component synthetic signal is composed of an AM-LFM and an AM-SFM, and three-component synthetic signal is composed of two AM-LFMs and an AM-SFM with only one intersection. All synthetic data have 256 samples. Each epoch randomly generates batchsize=16 synthetic signals for training by changing the slope of the AM-LFM signal and the smallest and normalized frequencies of the AM-SFM signal. The proportion for two and three-component signals is 50% and 50%. Test synthetic signals in this paper are not in our training dataset.  
 For the specific application, you'd better make the synthetic signals in the training dataset fit to the real-life signals to get a satisfactory performance.
 
-## Supplementary
+## Supplementary Experiments
 
-### Discussion on Real-life Data
-In this paper, we discuss the robustness of our network on synthetic data. We also have some discussion on real-life data corresponding to various **N** (3, 5, 7, 9, 11, 13, 15). Seven pre-trained networks are provided.
+## Discussion on the real-life signal
+In this paper, we discuss the robustness of our network on synthetic data. We also have some discussion on the real-life signal corresponding to various **N** (3, 5, 7, 9, 11, 13, 15). Seven pre-trained networks are provided.
 The evaluation results measured by Renyi Entropy for the real-life bat echolocation signal are shown in the following table: 
 <table>
 <tr>
@@ -102,6 +102,19 @@ We choose to use the synthetic data with a fixed **SNR = 10 dB** to train our mo
 
 It is obvious that the model trained by data with SNR = 5 dB ignores the fourth component of the bat echolocation signal, of which energy is weak. The other two model succeed in obtaining the weak energy component. However, when we use the synthetic data with SNR level ranging from 5 to 45 dB, there are remaining CTs. Thus, we choose data with SNR = 10 dB to train our model. 
 
+### Discussion on the length of the test signal
+Though we train our model only using 256-sample synthetic signals, we gain satisfactory performance on a 400-sample bat echolocation signal without re-train. Thus, we have experiments on the different lengths of the test signals, and the results are shown as follows:
+
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/length.png" width = "900" height = "175" align=center />
+
+It is notable that the interference terms and noise appear with the increasing length of signal, and when the length of the test signal is 2 times of the training signal, the great representation can be also gained. That is to say, only if the length of the test signal is longer than the training signal (**about 2 times**), we need to re-train the model to gain better performance.
+
+### Comparison on the ability to estimate instantaneous frequency
+Usually time-frequency representations are compared in terms of their ability to accurately estimate instantaneous frequency, thus we have added such a comparison with ADTFD, RS and SST, and th results are shown in the following:
+
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if.png" width = "900" height = "175" align=center />
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_close.png" width = "900" height = "175" align=center />
+
 ### Discussion on the selection of kernel size in the skipping Conv block
 We adopt **K1 = 5** in the skipping Conv block where K1 represents the size of the convolutional kernel in the skipping Conv block. Empirically, the ideal range of the kernel size ranges from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
 
@@ -125,12 +138,7 @@ We adopt **R1 = 4** and **R2 = 4** in the BAM where R1 denotes the reduction rat
 
 For the selection of R1, it can be seen that the TFD results with R1 = 2, 4 reduce the CTs heavily while the result with R1 = 1 remains a lot of CTs. Moreover, the result of R1 = 4 has better performance on the resolution. For the selection of R2, only R2 = 4 achieve cross-term free TFD. Thus we choose R1 = 4 and R2 = 4 in our model.
 
-### Discussion on the length of the test signal
-Though we train our model only using 256-sample synthetic signals, we gain satisfactory performance on a 400-sample bat echolocation signal without re-train. Thus, we experiment on the different lengths of the test signals, and the results are shown as follows:
 
-<img src="https://github.com/teki97/DM-TFD/blob/master/fig/length.png" width = "900" height = "175" align=center />
-
-It is notable that the interference terms and noise appear with the increasing length of signal, and when the length of the test signal is 2 times of the training signal, the great representation can be also gained. That is to say, only if the length of the test signal is longer than the training signal (**about 2 times**), we need to re-train the model to gain better performance.
 
 ## Contributing Guideline
 We would like to thank the authors in these works [2-5] for sharing the source codes of these methods, which are publicly released at https://github.com/Prof-Boualem-Boashash/TFSAP-7.1-software-package, https://github.com/mokhtarmohammadi/Locally-Optimized-ADTFD and https://github.com/Jongchan/attention-module.
