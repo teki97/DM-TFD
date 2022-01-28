@@ -112,7 +112,7 @@ It is notable that the interference terms and noise appear with the increasing l
 ### Comparison on the ability to estimate instantaneous frequency
 Usually time-frequency representations are compared in terms of their ability to accurately estimate instantaneous frequency, thus we have added such a comparison with ADTFD, RS and SST, and th results are shown in the following:
 
-<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_es.png" align=center />
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_es.png" width = "1000" height = "300" align=center />
 
 For the closely-located signal, there is almost no difference among the results of three methods. On the other hand, it can be seen that the proposed DM-TFD has better performance on the spectral-overlapped signal, especially on the intersection of the signal.
 
