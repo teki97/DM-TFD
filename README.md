@@ -1,6 +1,6 @@
 # Data-Driven Modeling of High-Resolution Time-frequency Distribution
 ![](https://github.com/teki97/DM-TFD/blob/master/fig/architecture.png)
-We provide a pytorch implementation of the paper: Data-Driven Modeling of High-Resolution Time-frequency Distribution [1], where a data-driven modelig of time-frequency distribution (DM-TFD) model is proposed to gain high resolution and cross-term (CT) free TFDs. As shown in the above figure, the proposed model includes **N** Skipping Weighted Conv Modules. Specifically, several stacked multi-channel learning convolutional kernels to simulate traditional kernel functions while a skipping operator is utilized to maintain correct information transmission. In addition, bottleneck attention module (BAM) [2, 3] with groupnormalization is regarded as the weighted block to refine the coarse features extracted by convolutional layers to improve performance.  
+We provide a pytorch implementation of the paper: Data-Driven Modeling of High-Resolution Time-frequency Distribution [1], where a data-driven modelig based time-frequency distribution (DM-TFD) model is proposed to gain high resolution and cross-term (CT) free TFDs. As shown in the above figure, the proposed model includes **N** Skipping Weighted Conv Modules. Specifically, several stacked multi-channel learning convolutional kernels to simulate traditional kernel functions while a skipping operator is utilized to maintain correct information transmission. In addition, bottleneck attention module (BAM) [2, 3] with groupnormalization is regarded as the weighted block to refine the coarse features extracted by convolutional layers to improve performance.  
 All pre-trained networks related to this paper are provided in **master** branch.
 
 ## Preparation
@@ -90,32 +90,31 @@ The evaluation results measured by Renyi Entropy for the real-life bat echolocat
   <td align="center">10.55</td>
 </tr>
 </table>
-It is noted that the network with N=11 has the best performance on the real-life data, which is different from the result on the synthetic data. The reason behind this issue is that overfitting give rise to while increasing N. Thus, for reducing parameters and obtaining great performance, we choose to set N=9.
+It is noted that the network with N=11 has the best performance on the real-life data, which is different from the result on the synthetic data. The reason behind this issue is that overfitting gives rise to while increasing N. Thus, for reducing parameters and obtaining great performance, we choose to set N=9.
 The visualized experimental results are supplemented as follows:  
 
 ![](https://github.com/teki97/DM-TFD/blob/master/fig/supplement.png)
 
 ### Discussion on the SNR level during training
-We choose to use the synthetic data with a fixed **SNR = 10 dB** to train our model. In fact, we have also trained our model with different SNR levels, e.g., SNR = 5dB, SNR = [5, 45] dB. The TFD results of the real-world signals are shown as follows:
+We choose to use the synthetic data with a fixed **SNR = 10 dB** to train our model. In fact, we have also trained our model using datasets with different SNR levels, e.g., SNR = 5dB, SNR = [5, 45] dB. The TFD results of the real-world signals are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/snr.png" width = "500" height = "300" align=center />
 
-It is obvious that the model trained by data with SNR = 5 dB ignores the fourth component of the bat echolocation signal, of which energy is weak. The other two model succeed in obtaining the weak energy component. However, when we use the synthetic data with SNR level ranging from 5 to 45 dB, there are remaining CTs. Thus, we choose data with SNR = 10 dB to train our model. 
+It is obvious that the model trained by data with SNR = 5 dB ignores the fourth component of the bat echolocation signal, of which energy is weak. The other two model succeed in obtaining the weak energy component. However, when we use the synthetic data with SNR level ranging from 5 to 45 dB, there are considerable CTs remaining. Thus, we choose data with SNR = 10 dB to train our model. 
 
 ### Discussion on the length of the test signal
-Though we train our model only using 256-sample synthetic signals, we gain satisfactory performance on a 400-sample bat echolocation signal without re-train. Thus, we have experiments on the different lengths of the test signals, and the results are shown as follows:
+Though we train our model only using 256-sample synthetic signals, we gain satisfactory performance on a 400-sample bat echolocation signal without re-training. Thus, we have experiments on the different lengths of the test signals, and the results are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/length.png" width = "900" height = "175" align=center />
 
-It is notable that the interference terms and noise appear with the increasing length of signal, and when the length of the test signal is 2 times of the training signal, the great representation can be also gained. That is to say, only if the length of the test signal is longer than the training signal (**about 2 times**), we need to re-train the model to gain better performance.
+It is notable that the interference terms and noise appear with the increasing length of signal, and when the test signal is twice longer than the training signal, the great representation can be also gained. That is to say, only if the length of the test signal is nearly **twice** as long as the training signal, we need to re-train the model to gain better performance.
 
 ### Comparison on the ability to estimate instantaneous frequency
 Usually time-frequency representations are compared in terms of their ability to accurately estimate instantaneous frequency, thus we have added such a comparison with ADTFD, RS and SST, and th results are shown in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/if.png" width = "800" height = "450" align=center />
-<img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_close.png" width = "800" height = "450" align=center />
 
-It can be seen that the proposed DM-TFD has better performance on the spectral-overlapped signal (the 1st figure), especially on the intersection of the signal. On the other hand, for the closely-located signal, there is almost no difference in the results of three methods.
+For the closely-located signal, there is almost no difference among the results of three methods. On the other hand, it can be seen that the proposed DM-TFD has better performance on the spectral-overlapped signal, especially on the intersection of the signal.
 
 ### Discussion on the parameter settings
 We have some experiments on the parameter settings in the proposed model, e.g., the kernel size **K1** in the skipping Conv block, the kernel size **K2** in the BAM, the number of reduction ratio **R1** in the channel attention of the BAM, and the number of reduction ratio **R2** in the spatial attention of the BAM.
@@ -124,21 +123,21 @@ We adopt **K1 = 5** in the skipping Conv block. Empirically, the ideal range of 
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k1.png" width = "500" height = "175" align=center />
 
-On the one hand, there are residual interferences in the TFD results when K1 = 3 and K1 = 7, and the results of K1 = 5 achieve the cross-term free TFD. On the other hand, it seems that the large kernel size contributs to smooth result, e.g., though the result of K1 = 7 remain some CTs, the ATs and CTs look more smooth than K1 = 3.
+On the one hand, there are residual CTs when K1 = 3 and K1 = 7, and the result of K1 = 5 achieves the cross-term free TFD. On the other hand, it seems that the large kernel size contributs to smooth result, e.g., though the result of K1 = 7 remains some CTs, the ATs and CTs in this TFD result look more smooth than K1 = 3.
 
 We adopt **K2 = 3** in the BAM. Taking the computation complexity into consideration, the ideal range of the kernel size ranges from 1 to 5. There are the experimental results on the synthetic signal with K2 = 1, 3, 5 in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k2.png" width = "500" height = "175" align=center />
 
-There is almost no difference among these results. Except for the TFD result with K2 = 1 has some residual interference term, and has lower resolution compared with other results. In order to reduce the number of paramters, we finally choose K2 = 3.
+There is almost no difference among these results. Except for the TFD result with K2 = 1 has lower resolution compared with other results and some residual CTs. In order to reduce the number of paramters, we finally choose K2 = 3.
 
-We adopt **R1 = 4** and **R2 = 4** in the BAM where R1 denotes the reduction ratio in the channel attention and R2 denotes the reduction ratio in the spatial attention. The channel number of input is set to 8, thus the ideal range of R1/R2 ranges from 1 to 8. The TFD results of the real-life signal with R1 = 1, 2, 4 and R2 = 1, 2, 4 are shown as follows:
+We adopt **R1 = 4** and **R2 = 4** in the BAM. The channel number of input is set to 8, thus the ideal range of R1/R2 ranges from 1 to 8. The TFD results of the real-life signal with R1 = 1, 2, 4 and R2 = 1, 2, 4 are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/r1.png" width = "500" height = "175" align=center />
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/r2.png" width = "500" height = "175" align=center />
 
-For the selection of R1, it can be seen that the TFD results with R1 = 2, 4 reduce the CTs heavily while the result with R1 = 1 remains a lot of CTs. Moreover, the result of R1 = 4 has better performance on the resolution. For the selection of R2, only R2 = 4 achieve cross-term free TFD. Thus we choose R1 = 4 and R2 = 4 in our model.
+For the selection of R1, it can be seen that the TFD results with R1 = 2, 4 reduce the CTs heavily while the result with R1 = 1 remains a lot of CTs. Moreover, the result of R1 = 4 has better performance on the resolution. For the selection of R2, only R2 = 4 achieves cross-term free TFD. Thus we choose R1 = 4 and R2 = 4 in our model.
 
 
 
