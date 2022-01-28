@@ -107,7 +107,7 @@ Though we train our model only using 256-sample synthetic signals, we gain satis
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/length.png" width = "900" height = "175" align=center />
 
-It is notable that the interference terms and noise appear with the increasing length of signal, and when the test signal is twice longer than the training signal, the great representation can be also gained. That is to say, only if the length of the test signal is nearly **twice** as long as the training signal, we need to re-train the model to gain better performance.
+It is notable that the CTs and noise appear with the increasing length of signal, and when the test signal is twice longer than the training signal, the great representation can be also gained. That is to say, only if the length of the test signal is nearly **twice** as long as the training signal, we need to re-train the model to gain better performance.
 
 ### Comparison on the ability to estimate instantaneous frequency
 Usually time-frequency representations are compared in terms of their ability to accurately estimate instantaneous frequency, thus we have added such a comparison with ADTFD, RS and SST, and th results are shown in the following:
