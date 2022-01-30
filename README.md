@@ -100,7 +100,7 @@ We choose to use the synthetic data with a fixed **SNR = 10 dB** to train our mo
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/snr.png" width = "500" height = "300" align=center />
 
-It is obvious that the model trained by data with SNR = 5 dB ignores the fourth component of the bat echolocation signal, of which energy is weak. The other two model succeed in obtaining the weak energy component. However, when we use the synthetic data with SNR level ranging from 5 to 45 dB, there are considerable CTs remaining. Thus, we choose data with SNR = 10 dB to train our model. 
+It is obvious that the model trained by data with SNR = 5 dB ignores the fourth component of the bat echolocation signal, of which energy is weak. The other two models succeed in obtaining the weak energy component. However, when we use the synthetic data with SNR level ranging from 5 to 45 dB, there are considerable CTs remaining. Thus, we choose data with SNR = 10 dB to train our model. 
 
 ### Discussion on the length of the test signal
 Though we train our model only using 256-sample synthetic signals, we gain satisfactory performance on a 400-sample bat echolocation signal without re-training. Thus, we have experiments on the different lengths of the test signals, and the results are shown as follows:
@@ -110,7 +110,7 @@ Though we train our model only using 256-sample synthetic signals, we gain satis
 It is notable that the CTs and noise appear with the increasing length of signal, and when the test signals are nearly twice as long as the training signal, the great representations can be also gained. That is to say, only if the test signal is **more than twice** as long as the training signal, we need to re-train the model to gain better performance.
 
 ### Comparison on the ability to estimate instantaneous frequency
-Usually time-frequency representations are compared in terms of their ability to accurately estimate instantaneous frequency, thus we have added such a comparison with ADTFD, RS and SST, and th results are shown in the following:
+Usually time-frequency representations are compared in terms of their ability to accurately estimate instantaneous frequency, thus we have added such a comparison with ADTFD, and RS, and th results are shown in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/if_es.png" align=center />
 
