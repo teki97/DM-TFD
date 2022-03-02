@@ -117,13 +117,19 @@ Usually time-frequency representations are compared in terms of their ability to
 For the closely-located signal, there is almost no difference among the results of three methods. On the other hand, it can be seen that the proposed DM-TFD has better performance on the spectral-overlapped signal, especially on the intersection of the signal.
 
 ### Discussion on the parameter settings
-We have some experiments on the parameter settings in the proposed model, e.g., the kernel size **K1** in the skipping Conv block, the kernel size **K2** in the BAM, the number of reduction ratio **R1** in the channel attention of the BAM, and the number of reduction ratio **R2** in the spatial attention of the BAM.
+We have some experiments on the parameter settings in the proposed model, e.g., the kernel size **K1** in the skipping Conv block, the number of filters **F** in the skipping Conv block, the kernel size **K2** in the BAM, the number of reduction ratio **R1** in the channel attention of the BAM, and the number of reduction ratio **R2** in the spatial attention of the BAM.
 
 We adopt **K1 = 5** in the skipping Conv block. Empirically, the ideal range of the kernel size ranges from 1 to 7. There are the experimental results about K1 = 3, 5, 7 in the following:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/k1.png" width = "500" height = "175" align=center />
 
 On the one hand, there are residual CTs when K1 = 3 and K1 = 7, and the result of K1 = 5 achieves the cross-term free TFD. On the other hand, it seems that the large kernel size contributs to smooth result, e.g., though the result of K1 = 7 remains some CTs, the ATs and CTs in this TFD result look more smooth than K1 = 3.
+
+We adopt **F = 8** in the skipping Conv block. Due to the hardware limitation, we only provide corresponding experiments with **F** ranging from 2 to 12. There are the TFD results about F = 2, 4, 6, 8, 10, 12 in the following:
+
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/filter.png" width = "1080" height = "175" align=center />
+
+It is interesting that more is not always better, that is, the model with F = 12 performs more poorly than the model with F = 2. The reason is that overfitting may appear when the number of filter is a large value. Thus, we choose F = 8 to achieve satisfactory performance. 
 
 We adopt **K2 = 3** in the BAM. Taking the computation complexity into consideration, the ideal range of the kernel size ranges from 1 to 5. There are the experimental results on the synthetic signal with K2 = 1, 3, 5 in the following:
 
@@ -138,6 +144,7 @@ We adopt **R1 = 4** and **R2 = 4** in the BAM. The channel number of input is se
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/r2.png" width = "500" height = "175" align=center />
 
 For the selection of R1, it can be seen that the TFD results with R1 = 2, 4 reduce the CTs heavily while the result with R1 = 1 remains a lot of CTs. Moreover, the result of R1 = 4 has better performance on the resolution. For the selection of R2, only R2 = 4 achieves cross-term free TFD. Thus we choose R1 = 4 and R2 = 4 in our model.
+
 
 
 
