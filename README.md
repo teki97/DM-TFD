@@ -120,11 +120,11 @@ $$
 $$
 and we map the IF values into an image as follows:
 $$
-IF_{index}(n) = \min \big(L-1, \text{round}\left(2L\text{IF}(n)\right)\big),
+\text{IF_{index}}(n) = \min \big(L-1, \text{round}\left(2L\text{IF}(n)\right)\big),
 $$
 where $ IF_{index} $ is a corresponding index set of IF values in the image. It is inevitable to introduce errors in the training target since values are rounded (just like the quadrature error). The errors can be written as:
 $$
-\text{errors}(n) = \frac{IF_{index}(n)}{2L}- \text{IF}(n),
+\text{errors}(n) = \frac{IF_{index}(n)}{2L}- {IF}(n),
 $$
 it is obvious that $\text{errors}(n) \in [-\frac{1}{4L}, \frac{1}{4L}]$, i.e., when $L=256$ , the maximum error is about $0.000977$. Therefore the errors are too small to have an influence on the training target images. 
 
