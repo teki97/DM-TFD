@@ -153,7 +153,7 @@ where $\alpha=3$. This measure used by previous works, is proposed to measure th
 ### Visualization results
 From the perspective of visualization, the TFD result of the convolutional layer has little cross-terms and lower resolution than the result of BAM. Moreover, the TFD results of the BAM can see the fourth part of the signal while the output of the convolutional layer ignores. Therefore, we had the conclusion that the convolutional layers with skipping operators can offer a coarse CT reduction while the weighted block can eliminate residual CTs and the TFD resolution is further improved.
 
-<img src="https://github.com/teki97/DM-TFD/blob/master/fig/visual.png" width = "900" height = "175" align=center />
+<img src="https://github.com/teki97/DM-TFD/blob/master/fig/visual.png" width = "600" height = "175" align=center />
 
 
 ### Comparison on the ability to estimate instantaneous frequency
