@@ -116,11 +116,11 @@ z(n) = \exp \left[nf_{init} + \frac{\left(f_{final} - f_{init}\right)n^{2}}{2(L-
 $$
 where $f_{init}$ is the initial normalized frequency, $f_{final}$ is the final   normalized frequency, $f_{init}, f_{final} \in [-0.5, 0.5]$, and $L$ is the FFT size. Therefore, the IF values can be written as:
 $$
-\text{IF}(n) = f_{init} + \frac{\left(f_{final} - f_{init}\right)n}{L-1}, 
+{IF}(n) = f_{init} + \frac{\left(f_{final} - f_{init}\right)n}{L-1}, 
 $$
 and we map the IF values into an image as follows:
 $$
-\text{IF_{index}}(n) = \min \big(L-1, \text{round}\left(2L\text{IF}(n)\right)\big),
+IF_{index}(n) = \min \big(L-1, \text{round}\left({IF}(n) \times 2L\right)\big),
 $$
 where $ IF_{index} $ is a corresponding index set of IF values in the image. It is inevitable to introduce errors in the training target since values are rounded (just like the quadrature error). The errors can be written as:
 $$
