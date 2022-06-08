@@ -120,11 +120,11 @@ $$
 $$
 and we map the IF values into an image as follows:
 $$
-\text{IF}_{index}(n) = \min \big(L-1, \text{round}\left(\text{IF}(n)*2L\right)\big),
+IF_{index}(n) = \min \big(L-1, \text{round}\left(2L\text{IF}(n)\right)\big),
 $$
-where $\text{IF}_{index}$ is a corresponding index set of IF values in the image. It is inevitable to introduce errors in the training target since values are rounded (just like the quadrature error). The errors can be written as:
+where $ IF_{index} $ is a corresponding index set of IF values in the image. It is inevitable to introduce errors in the training target since values are rounded (just like the quadrature error). The errors can be written as:
 $$
-\text{errors}(n) = \frac{\text{IF}_{index}(n)}{2L}- \text{IF}(n),
+\text{errors}(n) = \frac{IF_{index}(n)}{2L}- \text{IF}(n),
 $$
 it is obvious that $\text{errors}(n) \in [-\frac{1}{4L}, \frac{1}{4L}]$, i.e., when $L=256$ , the maximum error is about $0.000977$. Therefore the errors are too small to have an influence on the training target images. 
 
@@ -146,7 +146,7 @@ We train our model only using synthetic signals, and the instantaneous amplitude
 
 The second quality measure, R\'enyi entropy, is defined as:
 $$
-R_{\alpha}\big(\rho(t, f)\big)=\frac{1}{1-\alpha} \log _{2} \displaystyle{\iint\left(\frac{\rho(t, f)}{\iint \rho(u, v) \mathrm{d} u \mathrm{d} v}\right)^{\alpha} \mathrm{d} t \mathrm{d} f}
+R_{\alpha}\big(\rho(t, f)\big)=\frac{1}{1-\alpha} \log_{2} \displaystyle{\iint\left(\frac{\rho(t, f)}{\iint \rho(u, v) \mathrm{d} u \mathrm{d} v}\right)^{\alpha} \mathrm{d} t \mathrm{d} f}
 $$
 where $\alpha=3$. This measure used by previous works, is proposed to measure the amount of information within the TF plane. The parameter $\alpha$ is chosen as an odd integer value in order to cancel the cross-terms which are integrated out over the entire TF plane. Therefore, when $\alpha=3$, the smaller R\'enyi entropy is, the higher resolution the TFD result has.
 
