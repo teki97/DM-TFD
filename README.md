@@ -146,11 +146,11 @@ $$
 where ${\rho}(t, f)$ is the constructed TFD result and $y(t, f)$ is the ideal TFD, i.e., the model.
 We train our model only using synthetic signals, and the instantaneous amplitudes (IAs)  as well as IFs of synthetic signals can be obtained. This measure used by previous works, is appropriate since it represents the distance between the generated TFD results and the target TFD model that we want to achieve.
 
-The second quality measure, R\'enyi entropy, is defined as:
+The second quality measure, Renyi entropy, is defined as:
 $$
 R_{\alpha}\big(\rho(t, f)\big)=\frac{1}{1-\alpha} \log_{2} \displaystyle{\iint\left(\frac{\rho(t, f)}{\iint \rho(u, v) \mathrm{d} u \mathrm{d} v}\right)^{\alpha} \mathrm{d} t \mathrm{d} f}
 $$
-where $\alpha=3$. This measure used by previous works, is proposed to measure the amount of information within the TF plane. The parameter $\alpha$ is chosen as an odd integer value in order to cancel the cross-terms which are integrated out over the entire TF plane. Therefore, when $\alpha=3$, the smaller R\'enyi entropy is, the higher resolution the TFD result has.
+where $\alpha=3$. This measure used by previous works, is proposed to measure the amount of information within the TF plane. The parameter $\alpha$ is chosen as an odd integer value in order to cancel the cross-terms which are integrated out over the entire TF plane. Therefore, when $\alpha=3$, the smaller Renyi entropy is, the higher resolution the TFD result has.
 
 ### Discussion on the bottleneck structure in the BAM
 The first linear layer $W_1\in \mathbb{R}^{C\times C/r_{c}}$ achieves channel reduction with reduction ratio $r_c$, then non-linearity characteristic is introduced by ReLU function, and the second linear layer $W_2\in \mathbb{R}^{C/r_{c} \times C}$ increases the number of channels. Namely, the linear layers in the BAM act as a bottleneck.
