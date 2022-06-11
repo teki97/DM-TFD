@@ -1,6 +1,6 @@
 # A Data-Driven High-Resolution Time-frequency Distribution
 ![](https://github.com/teki97/DM-TFD/blob/master/fig/architecture.png)
-We provide a pytorch implementation of the paper: A Data-Driven High-Resolution Time-frequency Distribution [1], where a data-driven modelig based time-frequency distribution (DH-TFD) model is proposed to gain high resolution and cross-term (CT) free TFDs. As shown in the above figure, the proposed model includes **N** Skipping Weighted Conv Modules. Specifically, several stacked multi-channel convolutional kernels to simulate traditional kernel functions while a skipping operator is utilized to maintain correct information transmission. In addition, bottleneck attention module (BAM) [2, 3] with groupnormalization is regarded as the weighted block to refine the coarse features extracted by convolutional layers to improve performance.  
+We provide a pytorch implementation of the paper: A Data-Driven High-Resolution Time-frequency Distribution (DH-TFD) [1], where a data-driven modelig based time-frequency distribution model is proposed to gain high resolution and cross-term (CT) free TFDs. As shown in the above figure, the proposed model includes **N** Skipping Weighted Conv Modules. Specifically, several stacked multi-channel convolutional kernels to simulate traditional kernel functions while a skipping operator is utilized to maintain correct information transmission. In addition, bottleneck attention module (BAM) [2, 3] with groupnormalization is regarded as the weighted block to refine the coarse features extracted by convolutional layers to improve performance.  
 All pre-trained networks related to this paper are provided in **master** branch.
 
 ## Preparation
@@ -103,6 +103,8 @@ We choose to use the synthetic data with a fixed **SNR = 10 dB** to train our mo
 It is obvious that the model trained by data with SNR = 5 dB ignores the fourth component of the bat echolocation signal, of which energy is weak. The other two models succeed in obtaining the weak energy component. However, when we use the synthetic data with SNR level ranging from 5 to 45 dB, there are considerable CTs remaining. Thus, we choose data with SNR = 10 dB to train our model. 
 
 ### Discussion on the length of the test signal
+It is well-known that the convolutional layers are in theory independent of signal length, and the linear layers are not. However, before the linear layers in the BAM, the average pooling is employed, i.e., only the number of channels is considered in the following linear layers (the number of channels is independent of signal length).
+
 Though we train our model only using 256-sample synthetic signals, we gain satisfactory performance on a 400-sample bat echolocation signal without re-training. Thus, we have experiments on the different lengths of the test signals, and the results are shown as follows:
 
 <img src="https://github.com/teki97/DM-TFD/blob/master/fig/length.png" width = "900" height = "175" align=center />
@@ -110,7 +112,7 @@ Though we train our model only using 256-sample synthetic signals, we gain satis
 It is notable that the CTs and noise appear with the increasing length of signal, and when the test signals are nearly twice as long as the training signal, the great representations can be also gained. That is to say, only if the test signal is **more than twice** as long as the training signal, we need to re-train the model to gain better performance.
 
 ### Discussion on the training target
-Supervised learning needs labeled datasets to train algorithms that to classify data accurately. The input of our model is the WVD of the signal, which are 2-dimensional discrete time-frequency images. Thus we need to map the IF values into an image. For instance, the linear frequency-modulated signal $z(n)$ is defined as:
+Supervised learning needs labeled datasets to train algorithms that to classify data accurately. The input of our model is the WVD of the signal, which is the 2-dimensional discrete time-frequency image. Thus we need to map the IF values into an image. For instance, the linear frequency-modulated signal $z(n)$ is defined as:
 $$
 z(n) = \exp \left[nf_{init} + \frac{\left(f_{final} - f_{init}\right)n^{2}}{2(L-1)}\right], \, n=0,1,2,\cdots, L-1,
 $$
@@ -149,6 +151,9 @@ $$
 R_{\alpha}\big(\rho(t, f)\big)=\frac{1}{1-\alpha} \log_{2} \displaystyle{\iint\left(\frac{\rho(t, f)}{\iint \rho(u, v) \mathrm{d} u \mathrm{d} v}\right)^{\alpha} \mathrm{d} t \mathrm{d} f}
 $$
 where $\alpha=3$. This measure used by previous works, is proposed to measure the amount of information within the TF plane. The parameter $\alpha$ is chosen as an odd integer value in order to cancel the cross-terms which are integrated out over the entire TF plane. Therefore, when $\alpha=3$, the smaller R\'enyi entropy is, the higher resolution the TFD result has.
+
+### Discussion on the bottleneck structure in the BAM
+The first linear layer $W_1\in \mathbb{R}^{C\times C/r_{c}}$ achieves channel reduction with reduction ratio $r_c$, then non-linearity characteristic is introduced by ReLU function, and the second linear layer $W_2\in \mathbb{R}^{C/r_{c} \times C}$ increases the number of channels. Namely, the linear layers in the BAM act as a bottleneck.
 
 ### Visualization results
 From the perspective of visualization, the TFD result of the convolutional layer has little cross-terms and lower resolution than the result of BAM. Moreover, the TFD results of the BAM can see the fourth part of the signal while the output of the convolutional layer ignores. Therefore, we had the conclusion that the convolutional layers with skipping operators can offer a coarse CT reduction while the weighted block can eliminate residual CTs and the TFD resolution is further improved.
