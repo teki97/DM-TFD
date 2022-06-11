@@ -139,7 +139,7 @@ On the other hand, the errors will be reduced with the increasing FFT size $L$. 
 ### Discussion on loss function and evaluation criteria
 The reason behind why binary cross-entropy (BCE) loss is used to train our model is that we regard the proposed model as a  classification task. Specifically, we divide the whole TF image into two parts, i.e., auto-terms (ATs) and others(cross-terms (CTs), interference terms and noise). Therefore, we choose BCE loss to train our model instead of MSE or MAE loss (which is usually used in the regression task).
 
-The first quality measure, $\ell_{1}$ \textit{distance to model}, is computed by:
+The first quality measure, $\ell_{1}$ distance to model, is computed by:
 $$
 d\big(\rho(t, f)\big) = \frac{\sum_{t=0}^{L-1}\sum_{f=0}^{L-1}|{\rho(t, f)} - y(t, f)|}{\sum_{t=0}^{L-1}\sum_{f=0}^{L-1}| y(t, f)|},
 $$
